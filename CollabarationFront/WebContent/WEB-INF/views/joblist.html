@@ -1,0 +1,51 @@
+<p>Search:</p><input type="text" ng-model="searchTxt">
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+h3
+{
+color:#212121;
+}
+</style>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>JobTitle</th>
+<th>PostedOn</th>
+<th>SkillsRequired</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="job in jobs | filter:searchTxt">
+<td><a href="" ng-click="getJobDetails(job.id)">{{job.jobTitle}}</a></td>
+<td>{{job.postedOn| date:'medium'}}</td>
+<td>{{job.skillsRequired}}</td>
+<td>{{job.location}}</td>
+</tr>
+</tbody>
+</table>
+
+<pre style="color:#616161;" ng-show="showJobDetails">
+JobTitle:{{job.jobTitle}}
+JobDescription:{{job.jobDescription}}
+SkillsRequired:{{job.skillsRequired}}
+Salary:{{job.salary}}
+Location:{{job.location}}
+CompanyName:{{job.companyname}}
+PostedON:{{job.postedOn|date:'medium'}}
+</pre>
+<br>
+<h3><a href="#!home" ng-show="showJobDetails">Apply job</a></h3>
+<br>
